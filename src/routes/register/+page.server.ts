@@ -1,6 +1,7 @@
 import { fail } from '@sveltejs/kit';
 import { Client, Databases, ID } from 'appwrite';
 import { PROJECT_ID, DATABASE_ID, USERS_COLLECTION_ID } from '$env/static/private';
+import { Query } from 'node-appwrite';
 export const actions = {
 	register: async ({ request }) => {
 		const data = await request.formData();
@@ -33,12 +34,20 @@ export const actions = {
 
 			const databases = new Databases(client);
 
+			const existingUsername = await databases.listDocuments(DATABASE_ID, USERS_COLLECTION_ID, [
+				Query.equal('username', username)
+			]);
+
+			if (existingUsername.documents.length > 0) {
+				return fail(400, { message: 'Username exists' });
+			}
+
 			await databases.createDocument(DATABASE_ID, USERS_COLLECTION_ID, ID.unique(), {
 				username,
 				password
 			});
 
-			return { success: true };
+			return { success: true, message: '' };
 		} catch (e) {
 			console.log(e);
 		}

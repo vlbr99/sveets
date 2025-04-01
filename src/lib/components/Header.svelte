@@ -1,24 +1,25 @@
 <script lang="ts">
+	import { PawPrint, Plus } from 'lucide-svelte';
 	let isLoggedIn = $state(false);
-	import { DoorOpen } from 'lucide-svelte';
 </script>
 
 <header>
-	<p>skull 💀</p>
+	<div class="header-content">
+		<a class="logo" href="/">WebPet <PawPrint /></a>
 
-	<nav>
-		<a href="/">Jokes</a>
-		<a href="/post">Post</a>
-		{#if isLoggedIn}
-			<div class="header-profile-wrapper">
-				<p>mina</p>
-				<DoorOpen />
-			</div>
-		{:else}
-			<a href="/login">Login</a>
-			<a href="/register">Register</a>
-		{/if}
-	</nav>
+		<nav>
+			<a href="/">Pets</a>
+			<a href="/post" class="post-pet"><Plus size={18} /> Post pet</a>
+			{#if isLoggedIn}
+				<div class="header-profile-wrapper">
+					<p>mina</p>
+				</div>
+			{:else}
+				<a href="/login">Login</a>
+				<a href="/register">Register</a>
+			{/if}
+		</nav>
+	</div>
 </header>
 
 <style lang="scss">
@@ -26,17 +27,46 @@
 	@use '../../lib/styles/variables' as *;
 	header {
 		@include flex-row;
-		padding: $padding-sm;
 		justify-content: space-between;
-		nav {
+		width: 100%;
+		margin: auto;
+		padding: $padding-sm;
+		user-select: none;
+		background-color: $sub-black;
+		.header-content {
 			@include flex-row;
-			gap: $gap-sm;
-			a {
-				all: unset;
-				cursor: pointer;
-			}
-			.header-profile-wrapper {
+			width: min(100%, 1000px);
+			justify-content: space-between;
+			margin: auto;
+			padding: $padding-sm;
+			.logo {
 				@include flex-row;
+				text-decoration: none;
+				gap: $gap-sm;
+				color: $blue;
+				font-weight: 600;
+			}
+
+			nav {
+				@include flex-row;
+				gap: $gap-normal;
+				a {
+					all: unset;
+					color: $white;
+					cursor: pointer;
+					font-size: $font-sm;
+				}
+				.post-pet {
+					@include flex-row;
+					gap: $gap-sm;
+					padding: calc($padding-sm - 0.15rem);
+					background-color: $blue;
+					border-radius: $radius-sm;
+					transition: $transition-short;
+					&:hover {
+						@include blue-shadow;
+					}
+				}
 			}
 		}
 	}

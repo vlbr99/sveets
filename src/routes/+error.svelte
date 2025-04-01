@@ -3,8 +3,9 @@
 </script>
 
 <div class="error-wrapper">
-	<h1>This page is like water in Africa... it doesn't exist</h1>
+	<h1>Wait... where are the pets?</h1>
 	<p>Error: {page?.error?.message}</p>
+	<a href="/">Go to pets</a>
 </div>
 
 <style lang="scss">

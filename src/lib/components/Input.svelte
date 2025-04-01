@@ -11,8 +11,15 @@
 
 	input {
 		all: unset;
-		border: 1px solid black;
 		@include shadow;
+		border-top: 1px solid $sub-blue;
+		color: $white;
 		padding: $padding-sm;
+		width: min(95%, 500px);
+		border-radius: $radius-sm;
+		background-color: $sub-black;
+		&:focus {
+			outline: 1px solid $blue;
+		}
 	}
 </style>

@@ -7,11 +7,15 @@
 <Header />
 {@render children()}
 
-<style>
+<style lang="scss">
+	@use '../lib/styles/variables' as *;
 	:global(*) {
 		font-family: 'Inter Variable', sans-serif;
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
+	}
+	:global(body) {
+		background-color: $black;
 	}
 </style>

@@ -11,13 +11,17 @@
 
 	button {
 		all: unset;
-		@include shadow;
-		width: 100%;
-		background-color: black;
-		border: 1px solid black;
+		@include sub-shadow;
+		border-top: 1px solid $sub-blue;
 		padding: $padding-sm;
-		color: white;
+		width: min(95%, 500px);
+		border-radius: $radius-sm;
+		background-color: $blue;
 		text-align: center;
 		cursor: pointer;
+		user-select: none;
+		&:focus {
+			outline: 1px solid $white;
+		}
 	}
 </style>

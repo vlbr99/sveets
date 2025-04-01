@@ -10,5 +10,15 @@
 	flex-direction: column;
 }
 @mixin shadow {
-	box-shadow: 0 3px 10px rgb(0, 0, 0, 0.2);
+	box-shadow:
+		0 4px 10px rgba(0, 0, 0, 0.4),
+		0 2px 4px rgba(255, 255, 255, 0.1) inset;
+}
+@mixin sub-shadow {
+	box-shadow:
+		0 4px 10px rgba(0, 0, 0, 0.2),
+		0 2px 4px rgba(255, 255, 255, 0.3) inset;
+}
+@mixin blue-shadow {
+	box-shadow: rgba(0, 132, 255, 0.56) 0px 1px 15px 1px;
 }
