@@ -13,7 +13,27 @@
 	@use '../lib/styles/variables' as *;
 	.error-wrapper {
 		@include flex-col;
-		margin-top: 100px;
+		gap: $gap-normal;
+		margin-top: 10em;
 		text-align: center;
+		h1 {
+			color: $white;
+			font-weight: 500;
+		}
+		p {
+			color: $sub-white;
+		}
+		a {
+			gap: $gap-sm;
+			padding: calc($padding-sm - 0.15rem);
+			background-color: $blue;
+			border-radius: $radius-sm;
+			transition: $transition-short;
+			text-decoration: none;
+			color: $white;
+			&:hover {
+				@include blue-shadow;
+			}
+		}
 	}
 </style>

@@ -1,22 +1,33 @@
 <script lang="ts">
+	import Pet from '$lib/components/Pet.svelte';
 	let { data } = $props();
 </script>
 
-{#each data.databaseData.documents as pet}
-	<div class="pet">
-		<p>title: {pet.title}</p>
-		<p>description: {pet.description}</p>
-		<p>by: {pet.by}</p>
-		<img
-			src="https://cloud.appwrite.io/v1/storage/buckets/67eab74a000065af9767/files/{pet.image}/view?project=67eaa8b10009d8a195f3"
-			alt=""
-		/>
+<!-- if i decide to add something in the future i made a page-wrapper div, please do not remove it -->
+
+<div class="page-wrapper">
+	<div class="pet-wrapper">
+		{#each data.databaseData.documents as pet}
+			<Pet image={pet.image} petDescription={pet.description} petName={pet.title} by={pet.by} />
+		{/each}
 	</div>
-{/each}
+</div>
 
 <style lang="scss">
-	.pet {
-		background-color: rgb(206, 157, 255);
-		margin-top: 20px;
+	@use '../lib/styles/mixins' as *;
+	@use '../lib/styles/variables' as *;
+	.page-wrapper {
+		@include flex-row;
+		align-items: flex-start;
+		margin-top: $super-small-spacing;
+		padding: $padding-normal;
+		width: 100%;
+		.pet-wrapper {
+			@include flex-col;
+			gap: calc($gap-normal + 1rem);
+			min-width: 600px;
+			width: 95%;
+			margin: auto;
+		}
 	}
 </style>

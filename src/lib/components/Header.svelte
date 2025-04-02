@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PawPrint, Plus } from 'lucide-svelte';
+	import { PawPrint, Plus, Menu, X } from 'lucide-svelte';
 	let isLoggedIn = $state(false);
 </script>
 
@@ -33,6 +33,10 @@
 		padding: $padding-sm;
 		user-select: none;
 		background-color: $sub-black;
+
+		position: fixed;
+		height: 61px;
+		top: 0;
 		.header-content {
 			@include flex-row;
 			width: min(100%, 1000px);
@@ -66,6 +70,13 @@
 					&:hover {
 						@include blue-shadow;
 					}
+				}
+			}
+		}
+		@media (max-width: 550px) {
+			.header-content {
+				nav {
+					display: none;
 				}
 			}
 		}

@@ -3,18 +3,11 @@
 		'https://ik.imagekit.io/pmq6ogtx8l/svelte.png?updatedAt=1743525501006',
 		'https://ik.imagekit.io/pmq6ogtx8l/react.png?updatedAt=1743525590634',
 		'https://ik.imagekit.io/pmq6ogtx8l/vue.png?updatedAt=1743525656959',
-		'https://ik.imagekit.io/pmq6ogtx8l/svelte.png?updatedAt=1743525501006',
-		'https://ik.imagekit.io/pmq6ogtx8l/react.png?updatedAt=1743525590634',
-		'https://ik.imagekit.io/pmq6ogtx8l/vue.png?updatedAt=1743525656959',
-		'https://ik.imagekit.io/pmq6ogtx8l/svelte.png?updatedAt=1743525501006',
-		'https://ik.imagekit.io/pmq6ogtx8l/react.png?updatedAt=1743525590634',
-		'https://ik.imagekit.io/pmq6ogtx8l/vue.png?updatedAt=1743525656959',
-		'https://ik.imagekit.io/pmq6ogtx8l/svelte.png?updatedAt=1743525501006',
-		'https://ik.imagekit.io/pmq6ogtx8l/react.png?updatedAt=1743525590634',
-		'https://ik.imagekit.io/pmq6ogtx8l/vue.png?updatedAt=1743525656959',
-		'https://ik.imagekit.io/pmq6ogtx8l/svelte.png?updatedAt=1743525501006',
-		'https://ik.imagekit.io/pmq6ogtx8l/react.png?updatedAt=1743525590634',
-		'https://ik.imagekit.io/pmq6ogtx8l/vue.png?updatedAt=1743525656959'
+		'https://ik.imagekit.io/pmq6ogtx8l/angular.png?updatedAt=1743602600242',
+		'https://ik.imagekit.io/pmq6ogtx8l/solid.png?updatedAt=1743602702015',
+		'https://ik.imagekit.io/pmq6ogtx8l/preact.png?updatedAt=1743602889254',
+		'https://ik.imagekit.io/pmq6ogtx8l/Qwik.png?updatedAt=1743603147997',
+		'https://ik.imagekit.io/pmq6ogtx8l/Alpine.js.png?updatedAt=1743603204646'
 		//I FORGOT SOMETHING 100% BUT PLEASE WRITE DOWN IN THE COMMENT WHAT YOU WANT TO SEE.
 		//example: add svelte logo
 	]);

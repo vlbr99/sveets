@@ -3,9 +3,12 @@
 	import Button from '$lib/components/Button.svelte';
 	import Tech from '$lib/components/Tech.svelte';
 	import Checkbox from '$lib/components/Checkbox.svelte';
+	import Toast from '$lib/components/Toast.svelte';
 	import { enhance } from '$app/forms';
 
 	import { ArrowUpRight } from 'lucide-svelte';
+
+	let isToastOpen = $state(false);
 
 	//this line below is the form prop, this prop lets us extract the fail-s from +page.server.ts file
 	let { form } = $props();
@@ -21,17 +24,14 @@
 		<Checkbox labelFor="tech" name="tech" className="register-checkbox">
 			I've read the <a href="/stuff">stuff</a>
 		</Checkbox>
-		<Button>Create account</Button>
+		<Button
+			onclick={() => {
+				isToastOpen = true;
+			}}>Create account</Button
+		>
 
 		<!-- we display the error or success message based on form prop-->
-		<!-- THIS HAS TO BE A TOAST -->
-		<p>
-			{#if form?.message}
-				* {form?.message} *
-			{:else if form?.success}
-				Account created successfully
-			{/if}
-		</p>
+		<Toast bind:isOpen={isToastOpen} toastText={form?.message} />
 
 		<p>
 			Got an account?
