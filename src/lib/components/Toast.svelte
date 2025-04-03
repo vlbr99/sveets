@@ -11,7 +11,7 @@
 		if (isOpen) {
 			const timeout = setTimeout(() => {
 				isOpen = false;
-			}, SECOND * 4);
+			}, SECOND * 5);
 
 			return () => clearTimeout(timeout);
 		}

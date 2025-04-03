@@ -1,26 +1,37 @@
 <script lang="ts">
-	import { PawPrint, Plus, Menu, X } from 'lucide-svelte';
-	let isLoggedIn = $state(false);
+	import { PawPrint, Menu, X } from 'lucide-svelte';
+	import Nav from './Nav.svelte';
+	import { fly } from 'svelte/transition';
+
+	let isOpen = $state(false);
 </script>
 
 <header>
 	<div class="header-content">
 		<a class="logo" href="/">WebPet <PawPrint /></a>
-
-		<nav>
-			<a href="/">Pets</a>
-			<a href="/post" class="post-pet"><Plus size={18} /> Post pet</a>
-			{#if isLoggedIn}
-				<div class="header-profile-wrapper">
-					<p>mina</p>
-				</div>
-			{:else}
-				<a href="/login">Login</a>
-				<a href="/register">Register</a>
-			{/if}
-		</nav>
+		<Nav flexNav />
+		{#if isOpen}
+			<X
+				class="header-close"
+				onclick={() => {
+					isOpen = false;
+				}}
+			/>
+		{:else}
+			<Menu
+				class="header-menu"
+				onclick={() => {
+					isOpen = true;
+				}}
+			/>
+		{/if}
 	</div>
 </header>
+{#if isOpen}
+	<div class="header-responsive" transition:fly>
+		<Nav flexNav />
+	</div>
+{/if}
 
 <style lang="scss">
 	@use '../../lib/styles/mixins' as *;
@@ -50,35 +61,51 @@
 				color: $blue;
 				font-weight: 600;
 			}
-
-			nav {
-				@include flex-row;
-				gap: $gap-normal;
-				a {
-					all: unset;
-					color: $white;
-					cursor: pointer;
-					font-size: $font-sm;
+			:global(.header-menu) {
+				display: none;
+				color: $white;
+				cursor: pointer;
+			}
+			:global(.header-close) {
+				color: white;
+				cursor: pointer;
+			}
+			@media (min-width: 550px) {
+				:global(.header-menu) {
+					display: none !important;
 				}
-				.post-pet {
-					@include flex-row;
-					gap: $gap-sm;
-					padding: calc($padding-sm - 0.15rem);
-					background-color: $blue;
-					border-radius: $radius-sm;
-					transition: $transition-short;
-					&:hover {
-						@include blue-shadow;
-					}
+				:global(.header-close) {
+					display: none !important;
 				}
 			}
 		}
+
 		@media (max-width: 550px) {
 			.header-content {
-				nav {
+				:global(.header-menu) {
+					display: block;
+					color: $white;
+				}
+				:global(nav) {
 					display: none;
 				}
 			}
+		}
+	}
+	.header-responsive {
+		@include flex-col;
+		align-items: flex-start;
+		text-align: left;
+		padding: $padding-normal;
+		position: fixed;
+		width: 100%;
+		inset: 61px auto auto 0;
+		background-color: $sub-black;
+		:global(nav) {
+			align-items: flex-start;
+		}
+		@media (min-width: 550px) {
+			display: none;
 		}
 	}
 </style>

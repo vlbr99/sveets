@@ -45,7 +45,7 @@
 	@use '../../lib/styles/variables' as *;
 	.register-wrapper {
 		@include flex-col;
-		margin-top: 10vh;
+		margin-top: $small-spacing;
 		gap: $gap-normal;
 		padding: $padding-sm;
 		user-select: none;

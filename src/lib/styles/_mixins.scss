@@ -1,3 +1,5 @@
+@use '../styles/variables' as *;
+
 @mixin flex-row {
 	display: flex;
 	align-items: center;
@@ -21,4 +23,17 @@
 }
 @mixin blue-shadow {
 	box-shadow: rgba(0, 132, 255, 0.56) 0px 1px 15px 1px;
+}
+@mixin link-button {
+	@include flex-row;
+	text-decoration: none;
+	color: $white;
+	gap: $gap-sm;
+	padding: calc($padding-sm - 0.15rem);
+	background-color: $blue;
+	border-radius: $radius-sm;
+	transition: $transition-short;
+	&:hover {
+		@include blue-shadow;
+	}
 }

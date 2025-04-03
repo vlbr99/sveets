@@ -1,13 +1,14 @@
 import { ID, Databases, Client, Storage } from 'node-appwrite';
 import { fail, redirect } from '@sveltejs/kit';
+import { RequestEvent } from '@sveltejs/kit';
 //IF YOU WANT THIS TO WORK YOU WILL NEED TO MAKE YOUR OWN ENV WITH YOUR DB AND STORAGE ID-S
 import { PROJECT_ID, DATABASE_ID, POSTS_COLLECTION_ID, BUCKET_ID } from '$env/static/private';
 
-//one mb of memory
+//1 mb of memory
 const MB = 1024 * 1024;
 
 export const actions = {
-	post: async ({ request }) => {
+	post: async ({ request }: RequestEvent) => {
 		const data = await request.formData();
 
 		//THOSE 3 LINES BELOW TAKE THE INPUT VALUE FROM THE FORM ON +PAGE.SVELTE
@@ -25,21 +26,24 @@ export const actions = {
 		//check if petName is there, and if length is too long
 		if (!petName) {
 			return fail(400, { message: 'Please enter a title' });
-		} else if (petName.length > 128) {
+		}
+		if (petName.length > 128) {
 			return fail(400, { message: "Title can't be longer than 128 characters" });
 		}
 
 		//check if petDescrition is there, and if length is too long
 		if (!petDescription) {
 			return fail(400, { message: 'Please enter a description' });
-		} else if (petDescription.length > 512) {
+		}
+		if (petDescription.length > 512) {
 			return fail(400, { message: "Description can't be longer than 512 characters" });
 		}
 
 		//check if petImage is there, and if size is greater than 5mb
-		if (!petImage || petImage.size === 0) {
+		if (!petImage || (petImage instanceof File && petImage.size === 0)) {
 			return fail(400, { message: 'Please post a picture of your pet' });
-		} else if (petImage.size > MB * 5) {
+		}
+		if (petImage instanceof File && petImage.size > MB * 5) {
 			return fail(400, { message: 'Image must me less than 5mb' });
 		}
 
@@ -63,14 +67,15 @@ export const actions = {
 				//now if the uploadedPetData is there it means that everything is good
 				//image is uploaded to the bucket, and data is written in db, we now redirect...
 				if (uploadedPetData) {
-					return { success: true };
+					redirect(303, '/');
 				} else {
-					return fail(400, { message: 'Data is not written in db.' });
+					return fail(400, { message: 'Something went wrong' });
 				}
 			}
 		} catch (error) {
 			//if something is wrong we catch the error that is visible in the console
 			console.log(error);
 		}
+		redirect(303, '/');
 	}
 };

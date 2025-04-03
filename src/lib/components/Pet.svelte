@@ -18,7 +18,7 @@
 	</div>
 	<div class="pet-likes-and-comments">
 		<p><Heart /> 24</p>
-		<p><MessageSquare />4</p>
+		<p><MessageSquare />Load comments (4)</p>
 	</div>
 </div>
 
@@ -77,7 +77,8 @@
 		}
 		.pet-likes-and-comments {
 			@include flex-row;
-			gap: $gap-normal;
+			width: 100%;
+			justify-content: space-between;
 			p {
 				@include flex-row;
 				color: $white;

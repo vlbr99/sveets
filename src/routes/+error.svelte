@@ -14,7 +14,7 @@
 	.error-wrapper {
 		@include flex-col;
 		gap: $gap-normal;
-		margin-top: 10em;
+		margin-top: $small-spacing;
 		text-align: center;
 		h1 {
 			color: $white;
@@ -24,16 +24,7 @@
 			color: $sub-white;
 		}
 		a {
-			gap: $gap-sm;
-			padding: calc($padding-sm - 0.15rem);
-			background-color: $blue;
-			border-radius: $radius-sm;
-			transition: $transition-short;
-			text-decoration: none;
-			color: $white;
-			&:hover {
-				@include blue-shadow;
-			}
+			@include link-button;
 		}
 	}
 </style>
