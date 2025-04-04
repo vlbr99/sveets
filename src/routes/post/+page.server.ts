@@ -1,6 +1,5 @@
 import { ID, Databases, Client, Storage } from 'node-appwrite';
-import { fail, redirect } from '@sveltejs/kit';
-import { RequestEvent } from '@sveltejs/kit';
+import { fail, redirect, RequestEvent } from '@sveltejs/kit';
 //IF YOU WANT THIS TO WORK YOU WILL NEED TO MAKE YOUR OWN ENV WITH YOUR DB AND STORAGE ID-S
 import { PROJECT_ID, DATABASE_ID, POSTS_COLLECTION_ID, BUCKET_ID } from '$env/static/private';
 

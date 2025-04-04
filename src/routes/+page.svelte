@@ -25,7 +25,7 @@
 		.pet-wrapper {
 			@include flex-col;
 			gap: calc($gap-normal + 1rem);
-			min-width: 600px;
+			max-width: 600px;
 			width: 95%;
 			margin: auto;
 		}

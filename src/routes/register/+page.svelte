@@ -2,14 +2,14 @@
 	import Input from '$lib/components/Input.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Tech from '$lib/components/Tech.svelte';
-	import Checkbox from '$lib/components/Checkbox.svelte';
 	import Toast from '$lib/components/Toast.svelte';
 	import { enhance } from '$app/forms';
 
 	import { ArrowUpRight } from 'lucide-svelte';
+	import { goto } from '$app/navigation';
 
 	let isToastOpen = $state(false);
-
+	let framework = $state('https://ik.imagekit.io/pmq6ogtx8l/js.png?updatedAt=1743763271532');
 	//this line below is the form prop, this prop lets us extract the fail-s from +page.server.ts file
 	let { form } = $props();
 </script>
@@ -20,10 +20,9 @@
 		<Input name="username" type="text" placeholder="Username" />
 		<Input name="password" type="password" placeholder="Password" />
 		<Input name="repeat-password" type="password" placeholder="Repeat password" />
-		<Tech />
-		<Checkbox labelFor="tech" name="tech" className="register-checkbox">
-			I've read the <a href="/stuff">stuff</a>
-		</Checkbox>
+		<Tech bind:framework />
+		<Input type="hidden" value={framework} name="selected-framework" />
+		<p>By continuing you accept the <a href="/stuff">stuff</a></p>
 		<Button
 			onclick={() => {
 				isToastOpen = true;
@@ -31,7 +30,6 @@
 		>
 
 		<!-- we display the error or success message based on form prop-->
-		<Toast bind:isOpen={isToastOpen} toastText={form?.message} />
 
 		<p>
 			Got an account?
@@ -39,6 +37,12 @@
 		</p>
 	</form>
 </div>
+
+{#if form?.message}
+	<Toast bind:isOpen={isToastOpen} toastText={form?.message} />
+{:else}
+	<Toast bind:isOpen={isToastOpen} toastText="Creating account..." />
+{/if}
 
 <style lang="scss">
 	@use '../../lib/styles/mixins' as *;
@@ -60,10 +64,6 @@
 			width: min(95%, 500px);
 			gap: $gap-normal;
 			margin-top: 1rem;
-			:global(.register-checkbox) {
-				width: 100%;
-				justify-content: flex-end;
-			}
 
 			p {
 				@include flex-row;

@@ -43,13 +43,13 @@
 			}}>Post pet</Button
 		>
 		<!-- we display the error or success message based on form prop-->
-		{#if form?.message}
-			<Toast bind:isOpen={isToastOpen} toastText={form?.message} />
-		{:else}
-			<Toast bind:isOpen={isToastOpen} toastText="Uploading pet..." />
-		{/if}
 	</form>
 </div>
+{#if form?.message}
+	<Toast bind:isOpen={isToastOpen} toastText={form?.message} />
+{:else}
+	<Toast bind:isOpen={isToastOpen} toastText="Uploading pet..." />
+{/if}
 
 <style lang="scss">
 	@use '../../lib/styles/mixins' as *;

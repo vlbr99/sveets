@@ -1,6 +1,10 @@
 <script lang="ts">
 	let { petName, petDescription, by, image } = $props();
-	import { Heart, MessageSquare } from 'lucide-svelte';
+	let areCommentsOpen = $state(false);
+	import { Heart, Plus } from 'lucide-svelte';
+	import Input from './Input.svelte';
+	import Button from './Button.svelte';
+	import { slide } from 'svelte/transition';
 </script>
 
 <!-- this is a pet component (the pet card that is displayed on the frontpage), nothing crazy -->
@@ -18,8 +22,38 @@
 	</div>
 	<div class="pet-likes-and-comments">
 		<p><Heart /> 24</p>
-		<p><MessageSquare />Load comments (4)</p>
+		<Button
+			onclick={() => {
+				areCommentsOpen = !areCommentsOpen;
+			}}
+		>
+			comments (4)
+		</Button>
 	</div>
+	{#if areCommentsOpen}
+		<div class="pet-comments-wrapper" transition:slide={{ duration: 200 }}>
+			<div class="pet-post-comment-wrapper">
+				<Input placeholder="Post comment" />
+				<Button><Plus /></Button>
+			</div>
+			<div>
+				<span>Miki</span>
+				<p>Such a nice pet</p>
+			</div>
+			<div>
+				<span>Miki</span>
+				<p>Such a nice pet</p>
+			</div>
+			<div>
+				<span>Miki</span>
+				<p>Such a nice pet</p>
+			</div>
+			<div>
+				<span>Miki</span>
+				<p>Such a nice pet</p>
+			</div>
+		</div>
+	{/if}
 </div>
 
 <style lang="scss">
@@ -31,11 +65,11 @@
 		@include shadow;
 		align-items: flex-start;
 		width: 95%;
-		max-width: 500px;
 		padding: $padding-normal;
 		background-color: $sub-black;
 		border-radius: calc($radius-sm + 0.3rem);
 		user-select: none;
+
 		.pet-data {
 			@include flex-col;
 			align-items: flex-start;
@@ -84,6 +118,42 @@
 				color: $white;
 				gap: $gap-sm;
 				margin-top: 1rem;
+				cursor: pointer;
+			}
+			:global(button) {
+				all: unset;
+				color: $white;
+				cursor: pointer;
+			}
+		}
+		.pet-post-comment-wrapper {
+			@include flex-row;
+			gap: $gap-sm;
+			box-shadow: none !important;
+			padding: 0 !important;
+			:global(button) {
+				width: 50px;
+				padding: 5px;
+			}
+		}
+		.pet-comments-wrapper {
+			@include flex-col;
+			align-items: flex-start;
+			gap: $gap-normal;
+			width: 100%;
+			margin-top: 0.5rem;
+			div {
+				@include shadow;
+				width: 100%;
+				padding: $padding-sm;
+				border-radius: $radius-sm;
+				span {
+					font-size: $font-sm;
+					color: $sub-white;
+				}
+				p {
+					color: $white;
+				}
 			}
 		}
 	}
