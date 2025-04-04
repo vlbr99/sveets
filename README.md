@@ -3,7 +3,7 @@
 
 A place for pets – real or rubber ducky!
 
-On WebPet, you can upload a picture of your pet and share it with others. Whether it's a dog, cat, or even a rubber duck, it's all welcome here.
+Are you a Svelte, Vue, React, or Angular dev? Ever wondered what kind of pets fellow framework nerds have? Well, I made WebPet, a site where devs can upload pics of their pets—real or, you know, a rubber duck.
 
 
 
